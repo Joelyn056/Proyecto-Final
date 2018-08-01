@@ -74,7 +74,7 @@
             // 
             this.salirToolStripMenuItem.Image = global::ProyectoFinal.Properties.Resources.Logout_Rounded_25px1;
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -187,6 +187,7 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.Name = "Menu";
             this.Text = "Menu Principal";
             this.menuStrip1.ResumeLayout(false);

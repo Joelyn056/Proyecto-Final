@@ -153,6 +153,7 @@
             this.FiltrarComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FiltrarComboBox.FormattingEnabled = true;
             this.FiltrarComboBox.Items.AddRange(new object[] {
+            "Todo",
             "ProductoId",
             "Descripcion",
             "Cantidad",
@@ -186,6 +187,7 @@
             this.Imprimirbutton.Text = "Imprimir";
             this.Imprimirbutton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Imprimirbutton.UseVisualStyleBackColor = true;
+            this.Imprimirbutton.Click += new System.EventHandler(this.Imprimirbutton_Click);
             // 
             // BuscarButton
             // 

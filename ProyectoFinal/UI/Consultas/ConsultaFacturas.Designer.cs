@@ -153,6 +153,7 @@
             this.FiltrarComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FiltrarComboBox.FormattingEnabled = true;
             this.FiltrarComboBox.Items.AddRange(new object[] {
+            "Todo",
             "FacturaId",
             "Nombre cliente",
             "Comentario",

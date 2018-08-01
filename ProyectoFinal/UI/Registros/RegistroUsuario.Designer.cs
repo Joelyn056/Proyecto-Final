@@ -84,7 +84,7 @@
             // 
             nombreLabel.AutoSize = true;
             nombreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nombreLabel.Location = new System.Drawing.Point(25, 129);
+            nombreLabel.Location = new System.Drawing.Point(25, 87);
             nombreLabel.Name = "nombreLabel";
             nombreLabel.Size = new System.Drawing.Size(74, 18);
             nombreLabel.TabIndex = 55;
@@ -94,7 +94,7 @@
             // 
             nombreUsuarioLabel.AutoSize = true;
             nombreUsuarioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nombreUsuarioLabel.Location = new System.Drawing.Point(12, 87);
+            nombreUsuarioLabel.Location = new System.Drawing.Point(12, 128);
             nombreUsuarioLabel.Name = "nombreUsuarioLabel";
             nombreUsuarioLabel.Size = new System.Drawing.Size(122, 18);
             nombreUsuarioLabel.TabIndex = 56;
@@ -131,7 +131,7 @@
             // 
             // NombresTextBox
             // 
-            this.NombresTextBox.Location = new System.Drawing.Point(132, 126);
+            this.NombresTextBox.Location = new System.Drawing.Point(132, 84);
             this.NombresTextBox.MaxLength = 80;
             this.NombresTextBox.Name = "NombresTextBox";
             this.NombresTextBox.Size = new System.Drawing.Size(200, 20);
@@ -139,7 +139,7 @@
             // 
             // NombreUsuarioTextBox
             // 
-            this.NombreUsuarioTextBox.Location = new System.Drawing.Point(140, 85);
+            this.NombreUsuarioTextBox.Location = new System.Drawing.Point(140, 126);
             this.NombreUsuarioTextBox.MaxLength = 80;
             this.NombreUsuarioTextBox.Name = "NombreUsuarioTextBox";
             this.NombreUsuarioTextBox.Size = new System.Drawing.Size(193, 20);

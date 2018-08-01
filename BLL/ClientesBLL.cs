@@ -104,7 +104,7 @@ namespace BLL
             try
             {
                 clientes = contexto.Clientes.Where(expression).ToList();
-                contexto.Dispose();
+                //contexto.Dispose();
             }
             catch (Exception)
             {

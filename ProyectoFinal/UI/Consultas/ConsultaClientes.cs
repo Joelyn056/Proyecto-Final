@@ -30,28 +30,31 @@ namespace ProyectoFinal.UI.Consultas
             int id;
             switch (FiltrarComboBox.SelectedIndex)
             {
-                case 0: //ClienteId
+                case 0://Todo
+                    break;
+
+                case 1: //ClienteId
                     id = Convert.ToInt32(CriterioTextBox.Text);
                     filtro = x => (x.ClienteId == id) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                     break;
 
-                case 1: //Nombres
+                case 2: //Nombres
                     filtro = x => (x.Nombres.Contains(CriterioTextBox.Text)) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                     break;
 
-                case 2: //Sexo
+                case 3: //Sexo
                     filtro = x => (x.Sexo.Contains(CriterioTextBox.Text)) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                     break;
 
-                case 3: //Cedula
+                case 4: //Cedula
                     filtro = x => (x.Cedula.Equals(CriterioTextBox.Text)) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                     break;
 
-                case 4: //Direccion
+                case 5: //Direccion
                     filtro = x => (x.Direccion.Contains(CriterioTextBox.Text)) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                     break;
 
-                case 5: //Numero Celular
+                case 6: //Numero Celular
                     filtro = x => (x.NumeroCelular.Equals(CriterioTextBox.Text)) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                     break;
             }

@@ -10,12 +10,14 @@ using System.Linq.Expressions;
 using BLL;
 using Entidades;
 using System.Threading.Tasks;
-
+using ProyectoFinal.Reportes;
 
 namespace ProyectoFinal.UI.Consultas
 {
     public partial class ConsultaUsuario : Form
     {
+        List<Usuarios> usuarios = new List<Usuarios>();
+
         public ConsultaUsuario()
         {
            
@@ -29,22 +31,36 @@ namespace ProyectoFinal.UI.Consultas
             int id;
             switch (FiltrarComboBox.SelectedIndex)
             {
-                case 0://UsuarioId
+                case 0://Todo
+                    break;
+                case 1://UsuarioId
                     id = Convert.ToInt32(CriterioTextBox.Text);
                     filtro = x => (x.UsuarioId == id);
                     break;
-                case 1://Nombres
+                case 2://Nombres
                     filtro = x => x.Nombres.Contains(CriterioTextBox.Text);
                     break;
-                case 2://NombreUsuario
+                case 3://NombreUsuario
                     filtro = x => x.NombreUsuario.Contains(CriterioTextBox.Text);
                     break;
-                case 3://Cargo
+                case 4://Cargo
                     filtro = x => x.Cargo.Contains(CriterioTextBox.Text);
                     break;
             }
+            usuarios = BLL.UsuariosBLL.GetList(filtro);
+            ConsultaDataGridView.DataSource = usuarios;
+        }
 
-            ConsultaDataGridView.DataSource = BLL.UsuariosBLL.GetList(filtro);
+        private void ImprimirButton_Click(object sender, EventArgs e)
+        {
+            if(usuarios.Count == 0)
+            {
+                MessageBox.Show("No hay datos");
+                return;
+            }
+
+            UsuariosReportForm usuariosReportForm = new UsuariosReportForm(usuarios);
+            usuariosReportForm.ShowDialog();
         }
     }
 }

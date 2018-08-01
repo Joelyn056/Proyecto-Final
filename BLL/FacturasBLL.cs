@@ -95,8 +95,8 @@ namespace BLL
                     var producto = contexto.Productos.Find(item.ProductoId);
                     producto.Inventario += item.Cantidad;
 
-                    //var facturas = contexto.Facturas.Find(item.FacturaId);
-                    //facturas.
+                    //var facturasd = contexto.Facturas.Find(item.FacturaId);//
+                    //facturasd.ClienteId -= Convert.ToInt32(item.Importe);//
                 }
 
                 contexto.Facturas.Remove(facturas);
@@ -171,5 +171,22 @@ namespace BLL
 
             return facturas;
         }
+
+       //
+        public static decimal CalcularImporte(decimal precio, int cantidad)
+        {
+            return Convert.ToDecimal(precio) * Convert.ToInt32(cantidad);
+        }
+
+        public static decimal CalcularITBIS(decimal subtotal)
+        {
+            return Convert.ToDecimal(subtotal) * Convert.ToDecimal(0.18);
+        }
+
+        public static decimal Total(decimal subtotal, decimal ITBIS)
+        {
+            return Convert.ToDecimal(subtotal) + Convert.ToDecimal(ITBIS);
+        }
+
     }
 }

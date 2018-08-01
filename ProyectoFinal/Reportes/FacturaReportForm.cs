@@ -14,7 +14,7 @@ namespace ProyectoFinal.Reportes
     
     public partial class FacturaReportForm : Form
     {
-        private List<Facturas> datos;
+        private List<Facturas> datos = null;
 
         public FacturaReportForm(List<Facturas> log)
         {

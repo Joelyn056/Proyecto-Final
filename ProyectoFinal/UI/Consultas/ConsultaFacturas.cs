@@ -30,7 +30,10 @@ namespace ProyectoFinal.UI.Consultas
             int id;
             switch(FiltrarComboBox.SelectedIndex)
             {
-                case 0: // FacturaId
+                case 0://Todo
+                    break;
+
+                case 1: // FacturaId
                     id = Convert.ToInt32(CriterioTextBox.Text);
                     filtro = x => (x.FacturaId == id) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                     break;
@@ -43,7 +46,7 @@ namespace ProyectoFinal.UI.Consultas
                 //    filtro = x => (x.Comentario.Contains(CriterioTextBox.Text)) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                 //    break;
 
-                case 3: //Fecha
+                case 2: //Fecha
                     filtro = x => (x.Fecha.Equals(CriterioTextBox.Text)) && (x.Fecha >= DesdedateTimePicker.Value.Date && x.Fecha <= HastadateTimePicker.Value.Date);
                     break;
 
@@ -61,8 +64,8 @@ namespace ProyectoFinal.UI.Consultas
                 return;
             }
 
-            FacturaReportForm facturasf = new FacturaReportForm(facturas);
-            facturasf.ShowDialog();
+            FacturaReportForm  facturaReportForm = new FacturaReportForm(facturas);
+            facturaReportForm.ShowDialog();
 
         }
     }

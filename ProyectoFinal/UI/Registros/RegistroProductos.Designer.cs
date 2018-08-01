@@ -152,6 +152,11 @@
             0,
             0,
             0});
+            this.GananciaNumericUpDown.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.GananciaNumericUpDown.Name = "GananciaNumericUpDown";
             this.GananciaNumericUpDown.Size = new System.Drawing.Size(97, 20);
             this.GananciaNumericUpDown.TabIndex = 45;
@@ -234,6 +239,11 @@
             0,
             0,
             0});
+            this.CostoNumericUpDown.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.CostoNumericUpDown.Name = "CostoNumericUpDown";
             this.CostoNumericUpDown.Size = new System.Drawing.Size(72, 20);
             this.CostoNumericUpDown.TabIndex = 60;
@@ -276,6 +286,11 @@
             0,
             0,
             0});
+            this.InventarioNumericUpDown.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.InventarioNumericUpDown.Name = "InventarioNumericUpDown";
             this.InventarioNumericUpDown.ReadOnly = true;
             this.InventarioNumericUpDown.Size = new System.Drawing.Size(97, 20);

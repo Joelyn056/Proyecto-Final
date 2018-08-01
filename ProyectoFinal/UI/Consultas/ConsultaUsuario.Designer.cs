@@ -59,6 +59,7 @@
             this.FiltrarComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FiltrarComboBox.FormattingEnabled = true;
             this.FiltrarComboBox.Items.AddRange(new object[] {
+            "Todo",
             "UsuarioId",
             "Nombre",
             "NombreUsuario",
@@ -102,6 +103,7 @@
             this.ImprimirButton.Text = "Imprimir";
             this.ImprimirButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ImprimirButton.UseVisualStyleBackColor = true;
+            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
             // 
             // label5
             // 

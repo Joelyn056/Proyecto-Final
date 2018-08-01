@@ -15,6 +15,8 @@ namespace ProyectoFinal.UI
 {
     public partial class FacturasForm : Form
     {
+        decimal ITBIS = 0;
+        decimal total = 0;
         public List<FacturaDetalle> facturaDetalle = new List<FacturaDetalle>();
         public FacturasForm()
         {
@@ -66,12 +68,13 @@ namespace ProyectoFinal.UI
             Facturas facturas = new Facturas();
 
             facturas.FacturaId = Convert.ToInt32(FacturaIdNumericUpDown.Value);
-            facturas.ClienteId = ((Clientes)ClienteComboBox.SelectedItem).ClienteId;  
+            facturas.ClienteId = ((Clientes)ClienteComboBox.SelectedItem).ClienteId;
             facturas.Fecha = FechaDateTimePicker.Value;
             facturas.SubTotal = Convert.ToInt32(SuBTotalNumericUpDown.Value);
             facturas.Itbis = Convert.ToInt32(ITBISNumericUpDown.Value);
             facturas.Total = Convert.ToInt32(TotalNumericUpDown.Value);
-            facturas.Detalle = facturaDetalle;
+            facturas.Detalle = facturaDetalle; 
+
 
             return facturas;
         }
@@ -80,7 +83,7 @@ namespace ProyectoFinal.UI
         {
             Repositorio<Clientes> clientes = new Repositorio<Clientes>(new Contexto());
             Repositorio<Productos> productos = new Repositorio<Productos>(new Contexto());
-            Repositorio<Usuarios> usuarios = new Repositorio<Usuarios>(new Contexto());
+            //Repositorio<Usuarios> usuarios = new Repositorio<Usuarios>(new Contexto());
 
             ClienteComboBox.DataSource = clientes.GetList(c => true);
             ClienteComboBox.DisplayMember = "Nombres";
@@ -106,8 +109,7 @@ namespace ProyectoFinal.UI
 
 
         private void BuscarFacturaIdButton_Click(object sender, EventArgs e)//Buscar FacturaId
-        {
-            GeneralErrorProvider.Clear();
+        {            
 
             int id = Convert.ToInt32(FacturaIdNumericUpDown.Value);
             Facturas facturas = BLL.FacturasBLL.Buscar(id);
@@ -124,6 +126,7 @@ namespace ProyectoFinal.UI
             else
                 MessageBox.Show("No se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            GeneralErrorProvider.Clear();
         }
 
 
@@ -165,6 +168,9 @@ namespace ProyectoFinal.UI
             DetalledataGridView.DataSource = null;
             GeneralErrorProvider.Clear();
 
+          
+
+            GeneralErrorProvider.Clear();
         }
 
         private void AgregarButton_Click(object sender, EventArgs e)//AgregarButton
@@ -172,25 +178,77 @@ namespace ProyectoFinal.UI
 
             FacturaDetalle detalle = new FacturaDetalle(
 
-                0,
-                (int)FacturaIdNumericUpDown.Value,
-                ((Productos)ProductoComboBox.SelectedItem).ProductoId,
-                ((Productos)ProductoComboBox.SelectedItem).Descripcion,
-                (int)CantidadNumericUpDown.Value,
-                PrecioNumericUpDown.Value,              
+                  0,
+                 (int)FacturaIdNumericUpDown.Value,
+                 ((Productos)ProductoComboBox.SelectedItem).ProductoId,
+                 ((Productos)ProductoComboBox.SelectedItem).Descripcion,
+                 (int)CantidadNumericUpDown.Value,
+                PrecioNumericUpDown.Value,
                 ImporteNumericUpDown.Value
             );
             facturaDetalle.Add(detalle);
 
             DetalledataGridView.DataSource = null;
-            DetalledataGridView.DataSource = facturaDetalle.ToList(); 
+            DetalledataGridView.DataSource = facturaDetalle.ToList();
 
             DetalledataGridView.Columns["id"].Visible = false;
             DetalledataGridView.Columns["facturaId"].Visible = false;
             DetalledataGridView.Columns["productoId"].Visible = false;
 
             Total();
+            //{
+            //    decimal Subtotal = 0;
+
+            //    foreach (var item in Detalle)
+            //    {
+            //        Subtotal -= item.Importe;
+            //    }
+
+            //    Subtotal *= (-1);
+            //    SuBTotalNumericUpDown.Value = Subtotal;
+
+            //    ITBIS = BLL.FacturasBLL.CalcularITBIS(Convert.ToDecimal(SuBTotalNumericUpDown.Value));
+            //    ITBISNumericUpDown.Value = ITBIS;
+
+            //    total = BLL.FacturasBLL.Total(Convert.ToDecimal(SuBTotalNumericUpDown.Value));
+            //    SuBTotalNumericUpDown.Value = total;
+            //}
         }
+
+      
+
+        private void RemoverButton_Click(object sender, EventArgs e)
+        {
+
+            if(DetalledataGridView.Rows.Count > 0 && DetalledataGridView.CurrentRow != null)
+            {
+
+                List<FacturaDetalle> Detalle = (List<FacturaDetalle>)DetalledataGridView.DataSource;
+
+                Detalle.RemoveAt(DetalledataGridView.CurrentRow.Index);
+
+                
+                decimal Subtotal = 0;
+
+                foreach (var item in Detalle)
+                {
+                    Subtotal -= item.Importe;
+                }
+
+                Subtotal *= (-1);
+                SuBTotalNumericUpDown.Value = Subtotal;
+
+                ITBIS = BLL.FacturasBLL.CalcularITBIS(Convert.ToDecimal(SuBTotalNumericUpDown.Value));
+                ITBISNumericUpDown.Value = ITBIS;
+
+                total = BLL.FacturasBLL.Total(Convert.ToDecimal(SuBTotalNumericUpDown.Value), Convert.ToDecimal(ITBISNumericUpDown.Value));
+                TotalNumericUpDown.Value = total;
+
+                DetalledataGridView.DataSource = null;
+                DetalledataGridView.DataSource = Detalle;
+            }
+        }
+
 
         private void Total()
         {
@@ -266,18 +324,7 @@ namespace ProyectoFinal.UI
             }
         }
 
-        private void RemoverButton_Click(object sender, EventArgs e)
-        {
-            if(DetalledataGridView.Rows.Count > 0 && DetalledataGridView.CurrentRow != null)
-            {
-                List<FacturaDetalle> Detalle = (List<FacturaDetalle>)DetalledataGridView.DataSource;///
-
-                Detalle.RemoveAt(DetalledataGridView.CurrentRow.Index);
-
-                DetalledataGridView.DataSource = null;
-                DetalledataGridView.DataSource = Detalle;
-            }
-        }
+       
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
@@ -319,22 +366,21 @@ namespace ProyectoFinal.UI
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            GeneralErrorProvider.Clear();
 
             int id = Convert.ToInt32(FacturaIdNumericUpDown.Value);
-            Facturas facturas = FacturasBLL.Buscar(id);
+            //Facturas facturas = FacturasBLL.Buscar(id);
 
-            if(facturas != null)
-            {
-                if(FacturasBLL.Eliminar(id))
+            //if(facturas != null)
+            //{
+                if(BLL.FacturasBLL.Eliminar(id))
                 {
-                    MessageBox.Show("Eliminado", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                     MessageBox.Show("no se pudo Eliminar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-                MessageBox.Show("no existe!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+                //MessageBox.Show("no existe!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             GeneralErrorProvider.Clear();
         }

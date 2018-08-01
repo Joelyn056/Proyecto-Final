@@ -13,7 +13,8 @@ namespace ProyectoFinal.Reportes
 {
     public partial class ClienteReportForm : Form
     {
-        private List<Clientes> datos;
+        private List<Clientes> datos = null;
+
         public ClienteReportForm(List<Clientes> log)
         {
             InitializeComponent();

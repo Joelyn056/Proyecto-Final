@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +12,21 @@ namespace ProyectoFinal.Reportes
 {
     public partial class ProductoReportForm : Form
     {
-        public ProductoReportForm()
+        private List<Productos> productos = null;
+
+        public ProductoReportForm(List<Productos> datos)
         {
             InitializeComponent();
+            this.productos = datos;
+        }
+
+        private void crystalReportViewer1_Load(object sender, EventArgs e)
+        {
+            ListadoProducto listadoProducto = new ListadoProducto();
+            listadoProducto.SetDataSource(productos);
+
+            ProductosCrystalReportViewer.ReportSource = listadoProducto;
+            ProductosCrystalReportViewer.Refresh();
         }
     }
 }
